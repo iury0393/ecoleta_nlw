@@ -1,4 +1,4 @@
-[![Latest Version on Node](https://img.shields.io/badge/Node-12.17.0-green)](https://nodejs.org/en/) [![Latest Version on NPM](https://img.shields.io/badge/NPM-6.14.15-green)](https://www.npmjs.com/)
+[![Latest Version on Node](https://img.shields.io/badge/Node-12.17.0-green)](https://nodejs.org/en/) [![Latest Version on NPM](https://img.shields.io/badge/NPM-6.14.15-red)](https://www.npmjs.com/)
 
 
 # Ecoleta
