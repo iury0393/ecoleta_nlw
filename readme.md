@@ -6,17 +6,19 @@
 
 ## Tabela de Conteúdo
 - <a href="#informações">Informações</a>
-- <a href="#dependências">Dependências</a>
+- <a href="#dependências servidor">Dependências Servidor</a>
 - <a href="#instalação">Instalação</a>
 - <a href="#desenvolvedor">Desenvolvedor</a>
 
 ## Informações
 O projeto feito em conjunto com as aulas da RocketSeat(Next Level Week).
 
-## Dependências
+## Dependências Servidor
 | Dependências em produção | Versão |
 | ------------------------ | ------ |
-| Express | 4.17.1 |
+| express | 4.17.1 |
+| knex | 0.21.1 |
+| sqlite3 | 4.2.0 |
 
 | Dependências em desenvolvimento | Versão |
 | ------------------------------- | ------ |
