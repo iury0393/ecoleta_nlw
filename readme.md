@@ -37,6 +37,7 @@ O projeto feito em conjunto com as aulas da RocketSeat(Next Level Week).
 | react-router-dom | 5.2.0 |
 | react-leaflet | 2.7.0 |
 | leaflet | 1.6.0 |
+| axios | 0.19.2 |
 
 | Dependências em desenvolvimento | Versão |
 | ------------------------------- | ------ |
