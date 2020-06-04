@@ -6,14 +6,14 @@
 
 ## Tabela de Conteúdo
 - <a href="#informações">Informações</a>
-- <a href="#dependências servidor">Dependências Servidor</a>
+- <a href="#dependências back-end">Dependências Back-End</a>
 - <a href="#instalação">Instalação</a>
 - <a href="#desenvolvedor">Desenvolvedor</a>
 
 ## Informações
 O projeto feito em conjunto com as aulas da RocketSeat(Next Level Week).
 
-## Dependências Servidor
+## Dependências Back-End
 | Dependências em produção | Versão |
 | ------------------------ | ------ |
 | express | 4.17.1 |
@@ -28,6 +28,12 @@ O projeto feito em conjunto com as aulas da RocketSeat(Next Level Week).
 | typescript | 3.9.3 |
 | ts-node-dev | 1.0.0 |
 | @types/express | 2.8.6 |
+
+## Dependências Front-End
+| Dependências em produção | Versão |
+| ------------------------ | ------ |
+| typescript | 3.7.2 |
+| react-icons | 3.10.0 |
 
 ## Instalação
 
