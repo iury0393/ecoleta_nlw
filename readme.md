@@ -35,10 +35,13 @@ O projeto feito em conjunto com as aulas da RocketSeat(Next Level Week).
 | typescript | 3.7.2 |
 | react-icons | 3.10.0 |
 | react-router-dom | 5.2.0 |
+| react-leaflet | 2.7.0 |
+| leaflet | 1.6.0 |
 
 | Dependências em desenvolvimento | Versão |
 | ------------------------------- | ------ |
 | @types/react-router-dom | 5.1.5 |
+| @types/react-leaflet | 2.5.1 |
 
 ## Instalação
 
