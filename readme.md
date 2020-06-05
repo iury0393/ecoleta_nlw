@@ -9,11 +9,12 @@
 - <a href="#informações">Informações</a>
 - <a href="#dependências-back-end">Dependências Back-End</a>
 - <a href="#dependências-front-end">Dependências Front-End</a>
+- <a href="#dependências-mobile">Dependências Mobile</a>
 - <a href="#instalação">Instalação</a>
 - <a href="#desenvolvedor">Desenvolvedor</a>
 
 ## Informações
-O projeto feito em conjunto com as aulas da RocketSeat(Next Level Week).
+O projeto feito em conjunto com as aulas da RocketSeat(Next Level Week). Usando Node.js e SQLite para o Back-End, React.js para o Front-End e React Native para o Mobile.
 
 ## Dependências Back-End
 | Dependências em produção | Versão |
@@ -45,6 +46,19 @@ O projeto feito em conjunto com as aulas da RocketSeat(Next Level Week).
 | ------------------------------- | ------ |
 | @types/react-router-dom | 5.1.5 |
 | @types/react-leaflet | 2.5.1 |
+
+## Dependências Mobile
+| Dependências em produção | Versão |
+| ------------------------ | ------ |
+| expo-font | 0.1.0 |
+| @expo-google-fonts/ubuntu | 0.1.0 |
+| @expo-google-fonts/roboto | 0.1.0 |
+| @react-navigation/native | 5.5.0 |
+
+
+| Dependências em desenvolvimento | Versão |
+| ------------------------------- | ------ |
+| expo | 37.0.3 |
 
 ## Instalação
 
