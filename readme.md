@@ -2,6 +2,7 @@
 
 
 # Ecoleta
+[!Ecoleta](ecoleta1.png) [!Ecoleta](ecoleta2.png)
 
 
 ## Tabela de Conteúdo

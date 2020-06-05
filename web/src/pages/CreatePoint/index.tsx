@@ -58,7 +58,7 @@ const CreatePoint = () => {
   }, []);
 
   useEffect(() => {
-    axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then(response => {
+    axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome').then(response => {
       const ufInitials = response.data.map(uf => uf.sigla);
 
       setUfs(ufInitials);
@@ -173,7 +173,7 @@ const CreatePoint = () => {
 
           <div className="field-group">
             <div className="field">
-              <label htmlFor="email">email</label>
+              <label htmlFor="email">Email</label>
               <input 
                 type="email"
                 name="email"
