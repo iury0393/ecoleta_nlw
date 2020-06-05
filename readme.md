@@ -2,12 +2,13 @@
 
 
 # Ecoleta
-[!Ecoleta](ecoleta1.png) [!Ecoleta](ecoleta2.png)
+![Ecoleta](ecoleta1.png) ![Ecoleta](ecoleta2.png)
 
 
 ## Tabela de Conteúdo
 - <a href="#informações">Informações</a>
-- <a href="#dependências back-end">Dependências Back-End</a>
+- <a href="#dependências-back-end">Dependências Back-End</a>
+- <a href="#dependências-front-end">Dependências Front-End</a>
 - <a href="#instalação">Instalação</a>
 - <a href="#desenvolvedor">Desenvolvedor</a>
 
