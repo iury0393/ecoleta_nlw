@@ -1,13 +1,11 @@
-  
 import React, {useState, useEffect} from 'react';
 import Constants from 'expo-constants';
 import { Feather as Icon, FontAwesome} from '@expo/vector-icons';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, Linking} from 'react-native';
 import { RectButton} from 'react-native-gesture-handler';
-import api from '../../services/api'
+import api from '../../services/api';
 import * as MailComposer from 'expo-mail-composer';
-
 
 interface Params {
   point_id: number
@@ -27,7 +25,8 @@ interface Data {
   }[]
 }
 
-const Detail = () => {
+const Detail =() => {
+
   const navigation = useNavigation();
   const route = useRoute();
 
@@ -60,7 +59,7 @@ const Detail = () => {
     Linking.openURL(`whatsapp://send?phone=${data.point.whatsapp}&text=Tenho interesse sobre coleta de resíduos.`)
   }
 
-  return (
+  return(
     <SafeAreaView style={{flex:1}}>
       <View style={styles.container}>
         
@@ -91,14 +90,14 @@ const Detail = () => {
         </RectButton>
       </View>
     </SafeAreaView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 32,
-    paddingTop: 20,
+    paddingTop: 20 + Constants.statusBarHeight,
   },
 
   pointImage: {

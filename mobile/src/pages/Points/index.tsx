@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import Constants from 'expo-constants';
-import { Feather as Icon } from '@expo/vector-icons';
-import { View, StyleSheet, TouchableOpacity, Text, ScrollView, Image, Alert } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import MapView, { Marker } from 'react-native-maps';
-import { SvgUri } from 'react-native-svg';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import { Feather as Icon} from '@expo/vector-icons';
+import MapView, {Marker} from 'react-native-maps';
+import {View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, Alert} from 'react-native';
+import {SvgUri} from 'react-native-svg';
 import api from '../../services/api';
 import * as Location from 'expo-location';
 
 interface Params{
   uf: string,
   city: string,
-};
+}
 
 interface Item{
   id: number,
@@ -26,17 +26,18 @@ interface Point{
   longitude: number
 };
 
-const Points = () => {
-  const navigation = useNavigation();
-  const route = useRoute();
+const Points =() => {
 
   const [items, setItems] = useState<Item[]>([]);
   const [points, setPoints] = useState<Point[]>([]);
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const [initialPosition, setInitialPosition] = useState<[number,number]>([0,0]);
 
+  const navigation = useNavigation();
+  const route = useRoute();
   const routeParams = route.params as Params;
- 
+
+
   useEffect(()=>{
     api.get('/items').then(response =>{
       setItems(response.data);
@@ -73,6 +74,12 @@ const Points = () => {
     })
   },[setSelectedItems]);
 
+  function handleNavigateBack(){
+    navigation.goBack()
+  }
+  function handleNavigateDetail(id:number){
+    navigation.navigate('Detail', {point_id: id})
+  }
   function handleSelectItem(id: number){
     const alreadySelected = selectedItems.findIndex(item => item === id);
 
@@ -82,26 +89,20 @@ const Points = () => {
     }else{
         setSelectedItems([...selectedItems,id]);
     }
-  }
 
-  function handleNavigateBack() {
-    navigation.goBack();
-  }
-
-  function handleNavigationToDetail(id:number) {
-    navigation.navigate('Detail', {point_id: id})
-  }
-
-  return (
+}
+  return(
     <>
       <View style={styles.container}>
         <TouchableOpacity onPress={handleNavigateBack}>
-          <Icon name="arrow-left" size={20} color="#34cb79"/>
+          <Icon name="arrow-left" size={20} color="#34cb79" />
         </TouchableOpacity>
-
-        <Text style={styles.title}>Bem-vindo.</Text>
-        <Text style={styles.description}>Encontre no mapa um ponto de coleta.</Text>
-
+        <Text style={styles.title}>
+          Bem vindo. 
+        </Text>
+        <Text style={styles.description}>
+          Encontre no mapa um ponto de coleta.
+        </Text>
         <View style={styles.mapContainer}>
         { initialPosition[0] !== 0  && (
             <MapView 
@@ -118,7 +119,7 @@ const Points = () => {
                   <Marker
                     key={String(point.id)}
                     style={styles.mapMarker}
-                    onPress={() => handleNavigationToDetail(point.id)}
+                    onPress={() => handleNavigateDetail(point.id)}
                     coordinate={{
                     latitude: point.latitude,
                     longitude: point.longitude,
@@ -134,13 +135,14 @@ const Points = () => {
           )
         }
         </View>
+
       </View>
       <View style={styles.itemsContainer}>
         <ScrollView 
-         horizontal 
-         showsHorizontalScrollIndicator={false} 
-         contentContainerStyle={{paddingHorizontal: 20}}
-        >
+          horizontal 
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal:20 }}
+          > 
           {items.map(item =>{
             return (
               <TouchableOpacity 
@@ -162,8 +164,10 @@ const Points = () => {
         </ScrollView>
       </View>
     </>
-  );
-};
+
+  )
+}
+
 
 const styles = StyleSheet.create({
   container: {

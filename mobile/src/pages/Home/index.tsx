@@ -1,35 +1,42 @@
-import React, { useState, ChangeEvent } from 'react';
-import { Feather as Icon } from '@expo/vector-icons'
-import { View, ImageBackground, Text, Image, StyleSheet, TextInput } from 'react-native';
+import React,{ useState } from 'react';
+import { Feather as Icon} from '@expo/vector-icons'
+import {View, ImageBackground, Image, Text, StyleSheet, TextInput, KeyboardAvoidingView, Platform} from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
+const Home = () =>{
 
-const Home = () => {
   const navigation = useNavigation();
   const [uf, setUf] = useState<string>();
   const [city, setCity] = useState<string>();
 
-  function handleNavigationToPoints() {
+
+  function handleNavigatePoints(){
     navigation.navigate('Points', {
       uf,
       city
     });
   }
 
-  return (
-    <ImageBackground 
-      source={require('../../assets/home-background.png')} 
-      style={styles.container}
-      imageStyle={{ width: 274, height: 368}}
-    > 
-      <View style={styles.main}>
-        <Image source={require('../../assets/logo.png')} />
-        <Text style={styles.title}>Seu marketplace de coleta de resíduos</Text>
-        <Text style={styles.description}>Ajudamos pessoas a encontrar pontos de coleta de forma eficiente</Text>
-      </View>
 
-      <View style={styles.footer}>
+  return (
+    <KeyboardAvoidingView
+      style={{ flex:1 }}
+      behavior={Platform.OS ==='ios' ? 'padding':undefined}
+    >
+      <ImageBackground 
+          source={require('../../assets/home-background.png')} 
+          style={styles.container}
+          imageStyle={{ width: 274, height: 368 }}
+
+          >
+        <View style={styles.main}>
+          <Image source={require('../../assets/logo.png')} />
+          <Text style={styles.title}>Seu marketplace de coleta de resíduos.</Text>
+          <Text style={styles.description}>Ajudamos pessoas a encontrar pontos de coleta de forma eficiente.</Text>
+        </View>
+
+        <View style={styles.footer}>
           <TextInput
             style={styles.input}
             placeholder="Selecione a UF"
@@ -47,7 +54,7 @@ const Home = () => {
             value={city}
             onChangeText={setCity}
           />
-          <RectButton style={styles.button} onPress={handleNavigationToPoints}>
+          <RectButton style={styles.button} onPress={handleNavigatePoints}>
             <View style={styles.buttonIcon}>
               <Text>
                 <Icon name="arrow-right" color="#FFF" size={24}/>
@@ -58,14 +65,15 @@ const Home = () => {
             </Text>
           </RectButton>
         </View>
-    </ImageBackground>
-  );
-};
+      </ImageBackground>
+    </KeyboardAvoidingView>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 32,
+    padding: 32
   },
 
   main: {
@@ -78,7 +86,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontFamily: 'Ubuntu_700Bold',
     maxWidth: 260,
-    marginTop: 64,
+    marginTop: 32
   },
 
   description: {
@@ -110,7 +118,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
     alignItems: 'center',
-    marginTop: 8,
+    marginTop: 16,
   },
 
   buttonIcon: {
