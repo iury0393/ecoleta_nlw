@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { Feather as Icon } from '@expo/vector-icons'
-import { View, ImageBackground, Text, Image, StyleSheet } from 'react-native';
+import { View, ImageBackground, Text, Image, StyleSheet, TextInput } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
 
 const Home = () => {
   const navigation = useNavigation();
+  const [uf, setUf] = useState<string>();
+  const [city, setCity] = useState<string>();
 
   function handleNavigationToPoints() {
-    navigation.navigate('Points');
+    navigation.navigate('Points', {
+      uf,
+      city
+    });
   }
 
   return (
@@ -25,15 +30,34 @@ const Home = () => {
       </View>
 
       <View style={styles.footer}>
-        <RectButton style={styles.button} onPress={handleNavigationToPoints}>
-          <View style={styles.buttonIcon}>
-            <Icon name="arrow-right" color="#FFF" size={24} />
-          </View>
-          <Text style={styles.buttonText}>
-            Entrar
-          </Text>
-        </RectButton>
-      </View>
+          <TextInput
+            style={styles.input}
+            placeholder="Selecione a UF"
+            autoCapitalize="characters"
+            maxLength={2}
+            autoCorrect={false}
+            value={uf}
+            onChangeText={setUf}
+          />
+
+          <TextInput
+            style={styles.input}
+            placeholder="Selecione a Cidade"
+            autoCorrect={false}
+            value={city}
+            onChangeText={setCity}
+          />
+          <RectButton style={styles.button} onPress={handleNavigationToPoints}>
+            <View style={styles.buttonIcon}>
+              <Text>
+                <Icon name="arrow-right" color="#FFF" size={24}/>
+              </Text>
+            </View>
+            <Text style={styles.buttonText}>
+              Entrar
+            </Text>
+          </RectButton>
+        </View>
     </ImageBackground>
   );
 };
