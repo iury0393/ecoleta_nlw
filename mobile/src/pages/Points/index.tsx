@@ -1,173 +1,147 @@
 import React, {useState, useEffect} from 'react';
 import Constants from 'expo-constants';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import { Feather as Icon} from '@expo/vector-icons';
-import MapView, {Marker} from 'react-native-maps';
+import {Feather as Icon} from '@expo/vector-icons';
 import {View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, Alert} from 'react-native';
+import MapView, {Marker} from 'react-native-maps';
 import {SvgUri} from 'react-native-svg';
-import api from '../../services/api';
 import * as Location from 'expo-location';
+import api from '../../services/api';
 
-interface Params{
-  uf: string,
-  city: string,
+interface Item {
+  id: number;
+  title: string;
+  image_url: string;
 }
 
-interface Item{
-  id: number,
-  title: string,
-  image_url: string
-};
-interface Point{
-  id: number,
-  image: string,
-  name: string,
-  latitude: number,
-  longitude: number
-};
+interface Point {
+  id: number;
+  name: string;
+  image: string;
+  image_url: string;
+  latitude: number;
+  longitude: number;  
+}
 
-const Points =() => {
+interface Params {
+  uf: string;
+  city: string;
+}
+
+const Points = () => {
+
+  const navigate = useNavigation();
 
   const [items, setItems] = useState<Item[]>([]);
   const [points, setPoints] = useState<Point[]>([]);
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
-  const [initialPosition, setInitialPosition] = useState<[number,number]>([0,0]);
 
-  const navigation = useNavigation();
+  const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0]);
+
   const route = useRoute();
-  const routeParams = route.params as Params;
 
+  const routeParms = route.params as Params;
 
-  useEffect(()=>{
-    api.get('/items').then(response =>{
+  useEffect(() =>{
+    api.get('items').then(response => {
       setItems(response.data);
-    })
-  },[]);
+    });
+  }, []);
 
-  useEffect(()=>{
-    async function loadPosition(){
+  useEffect(() => {
+    async function loadPosition() {
       const { status } = await Location.requestPermissionsAsync();
 
-      if(status !== 'granted'){
-        Alert.alert('Oooops...','Precisamos da sua permissão para obter a localização!')
-        return;
+      if(status !== 'granted') {
+          Alert.alert('opss', 'Precisamos de sua permissão para obter localização.');
+          return;
       }
 
       const location = await Location.getCurrentPositionAsync();
 
-      const { latitude, longitude } = location.coords;
+      const {latitude, longitude} = location.coords;
 
-      setInitialPosition([latitude, longitude]);
+      setInitialPosition([
+        latitude,
+        longitude,
+      ]);
     }
-    loadPosition()
-  },[]);
 
-  useEffect(()=>{
-    api.get('/points', {
+    loadPosition();
+  }, []);
+
+  useEffect(() => {
+    api.get('points', {
       params: {
-        city: routeParams.city,
-        uf: routeParams.uf,
+        city: routeParms.city,
+        uf: routeParms.uf,
         items: selectedItems
       }
     }).then(response => {
       setPoints(response.data);
     })
-  },[setSelectedItems]);
+  }, [selectedItems]);
 
-  function handleNavigateBack(){
-    navigation.goBack()
+  function handleNavigateBack() {
+    navigate.goBack();
   }
-  function handleNavigateDetail(id:number){
-    navigation.navigate('Detail', {point_id: id})
+
+  function handleNavigateDetail(id: number) {
+    navigate.navigate('Detail', { point_id: id });
   }
-  function handleSelectItem(id: number){
+
+  function handleSelectItem(id: number) {
     const alreadySelected = selectedItems.findIndex(item => item === id);
 
-    if(alreadySelected >= 0){
-        const filteredItems = selectedItems.filter(item => item != id);
-        setSelectedItems(filteredItems);
-    }else{
-        setSelectedItems([...selectedItems,id]);
-    }
+    if(alreadySelected >= 0) {
+      const filteresItems = selectedItems.filter(item => item !== id);
 
-}
-  return(
+      setSelectedItems(filteresItems);
+    }else {
+      setSelectedItems([...selectedItems, id]);
+    }    
+  }
+
+  return (
     <>
-      <View style={styles.container}>
-        <TouchableOpacity onPress={handleNavigateBack}>
-          <Icon name="arrow-left" size={20} color="#34cb79" />
+    <View style={styles.container}>
+      <TouchableOpacity onPress={handleNavigateBack}>
+        <Icon name="arrow-left" size={20} color="#34cb79" />
+      </TouchableOpacity>
+
+      <Text style={styles.title}>Bem-vindo.</Text>
+      <Text style={styles.description}>Encontre no mapa um ponto de coleta.</Text>
+
+      <View style={styles.mapContainer}>
+        { initialPosition[0] !== 0 && (
+          <MapView style={styles.map} 
+          initialRegion={{latitude: initialPosition[0], longitude: initialPosition[1], longitudeDelta: 0.014, latitudeDelta: 0.014}}>
+            {points.map(point => (
+              <Marker key={String(point.id)} onPress={() => handleNavigateDetail(point.id)} style={styles.mapMarker} coordinate={{latitude: point.latitude, longitude: point.longitude}}>
+              <View style={styles.mapMarkerContainer}>
+                <Image style={styles.mapMarkerImage} source={{uri: point.image_url}} />
+                <Text style={styles.mapMarkerTitle}>{point.name}</Text>
+              </View>
+            </Marker>
+            ))}
+          </MapView>
+        ) }
+      </View>
+    </View>
+    <View style={styles.itemsContainer}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{paddingHorizontal: 10}}>
+        {items.map(item => (
+          <TouchableOpacity key={String(item.id)} style={[styles.item, selectedItems.includes(item.id) ? styles.selectedItem : {}]} activeOpacity={0.6} onPress={() => handleSelectItem(item.id)}>
+          <SvgUri width={42} height={42} uri={item.image_url} />
+          <Text style={styles.itemTitle}>{item.title}</Text>
         </TouchableOpacity>
-        <Text style={styles.title}>
-          Bem vindo. 
-        </Text>
-        <Text style={styles.description}>
-          Encontre no mapa um ponto de coleta.
-        </Text>
-        <View style={styles.mapContainer}>
-        { initialPosition[0] !== 0  && (
-            <MapView 
-              style={styles.map} 
-              loadingEnabled={initialPosition[0]===0}
-              initialRegion={{
-                latitude: initialPosition[0],
-                longitude: initialPosition[1],
-                latitudeDelta: 0.014,
-                longitudeDelta: 0.014,
-              }}>
-              {points.map(point =>{
-                return (
-                  <Marker
-                    key={String(point.id)}
-                    style={styles.mapMarker}
-                    onPress={() => handleNavigateDetail(point.id)}
-                    coordinate={{
-                    latitude: point.latitude,
-                    longitude: point.longitude,
-                  }}>
-                    <View style={styles.mapMarkerContainer}> 
-                      <Image style={styles.mapMarkerImage } source={{uri:point.image}} />
-                      <Text style={styles.mapMarkerTitle}>{point.name}</Text>
-                    </View>
-                  </Marker>
-                )
-              })}
-            </MapView>
-          )
-        }
-        </View>
-
-      </View>
-      <View style={styles.itemsContainer}>
-        <ScrollView 
-          horizontal 
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingHorizontal:20 }}
-          > 
-          {items.map(item =>{
-            return (
-              <TouchableOpacity 
-                key={String(item.id)} 
-                style={
-                  [
-                    styles.item,
-                    selectedItems.includes(item.id) ? styles.selectedItem : {}
-                  ]
-                } 
-                onPress={()=>{handleSelectItem(item.id)}}
-                activeOpacity={0.6}
-              >
-                <SvgUri height={42}  width={42} uri={item.image_url} />
-                <Text style={styles.itemTitle}>{item.title}</Text>
-              </TouchableOpacity>
-            )
-          })}
-        </ScrollView>
-      </View>
+        ))}
+      
+      </ScrollView>
+    </View>
     </>
-
   )
-}
-
+};
 
 const styles = StyleSheet.create({
   container: {
