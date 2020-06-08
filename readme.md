@@ -54,11 +54,14 @@ O projeto feito em conjunto com as aulas da RocketSeat(Next Level Week). Usando 
 | @expo-google-fonts/ubuntu | 0.1.0 |
 | @expo-google-fonts/roboto | 0.1.0 |
 | @react-navigation/native | 5.5.0 |
+| react-native-maps | 0.26.1 |
+| expo-constants | 9.0.0 |
 
 
 | Dependências em desenvolvimento | Versão |
 | ------------------------------- | ------ |
 | expo | 37.0.3 |
+| @types/react-native | 0.61.17 |
 
 ## Instalação
 
