@@ -1,74 +1,74 @@
-[![Latest Version on Node](https://img.shields.io/badge/Node-12.17.0-green)](https://nodejs.org/en/) [![Latest Version on NPM](https://img.shields.io/badge/NPM-6.14.15-red)](https://www.npmjs.com/)
+<h1 align="center"><img src="./logo.png" alt="Ecoleta" /></h1>
+<p align="center">Project develop in Next Level Week #01</p>
+<p align="center">
+  <a href="https://nodejs.org/en/">
+    <img src="https://img.shields.io/static/v1?label=Node&message=JS&color=blue?style=plastic&logo=Node.js" alt="NodeJS" />
+  </a>
+  <a href="https://reactjs.org/">
+    <img src="https://img.shields.io/static/v1?label=React&message=JS&color=blue?style=plastic&logo=React" alt="ReactJS" />
+  </a>
+  <a href="https://reactnative.dev/">
+    <img src="https://img.shields.io/static/v1?label=React&message=Native&color=blue?style=plastic&logo=React" alt="React-Native" />
+  </a>
+</p>
+<p align="center"><img src="./ecoleta.png" /></p>
 
+---
 
-# Ecoleta
-![Ecoleta](ecoleta1.png) ![Ecoleta](ecoleta2.png)
+## About
 
+Ecoleta is an application to connect people who want to find collection places for recycling batteries, electronics, lamps, among others in your city and region closest to you.
 
-## Tabela de Conteúdo
-- <a href="#informações">Informações</a>
-- <a href="#dependências-back-end">Dependências Back-End</a>
-- <a href="#dependências-front-end">Dependências Front-End</a>
-- <a href="#dependências-mobile">Dependências Mobile</a>
-- <a href="#instalação">Instalação</a>
-- <a href="#desenvolvedor">Desenvolvedor</a>
+This project includes: API / Web App / Mobile App
 
-## Informações
-O projeto feito em conjunto com as aulas da RocketSeat(Next Level Week). Usando Node.js e SQLite para o Back-End, React.js para o Front-End e React Native para o Mobile.
+### Technologies
 
-## Dependências Back-End
-| Dependências em produção | Versão |
-| ------------------------ | ------ |
-| express | 4.17.1 |
-| knex | 0.21.1 |
-| sqlite3 | 4.2.0 |
-| cors | 2.8.5 |
+<ul>
+    <li>React</li>
+    <li>React Native</li>
+    <li>NodeJs</li>
+    <li>Typescript</li>
+</ul>
+<h2>Figma</h2>
+<p>Design: <a href="https://www.figma.com/file/9TlOcj6l7D05fZhU12xWT3/Ecoleta-(Booster)" target="__blank">Project Link</a></p>
 
-| Dependências em desenvolvimento | Versão |
-| ------------------------------- | ------ |
-| @types/express | 4.17.6 |
-| ts-node | 8.10.2 |
-| typescript | 3.9.3 |
-| ts-node-dev | 1.0.0 |
-| @types/express | 2.8.6 |
+## Run Project
 
-## Dependências Front-End
-| Dependências em produção | Versão |
-| ------------------------ | ------ |
-| typescript | 3.7.2 |
-| react-icons | 3.10.0 |
-| react-router-dom | 5.2.0 |
-| react-leaflet | 2.7.0 |
-| leaflet | 1.6.0 |
-| axios | 0.19.2 |
+Clone Project
 
-| Dependências em desenvolvimento | Versão |
-| ------------------------------- | ------ |
-| @types/react-router-dom | 5.1.5 |
-| @types/react-leaflet | 2.5.1 |
+```git
+git clone https://github.com/iury0393/ecoleta_nlw
+```
 
-## Dependências Mobile
-| Dependências em produção | Versão |
-| ------------------------ | ------ |
-| expo-font | 0.1.0 |
-| @expo-google-fonts/ubuntu | 0.1.0 |
-| @expo-google-fonts/roboto | 0.1.0 |
-| @react-navigation/native | 5.5.0 |
-| react-native-maps | 0.26.1 |
-| expo-constants | 9.0.0 |
+API
 
+```ssh
+cd api
+npm install
+npm run knex:migrate
+npm run knex:seed
+npm run dev
+```
 
-| Dependências em desenvolvimento | Versão |
-| ------------------------------- | ------ |
-| expo | 37.0.3 |
-| @types/react-native | 0.61.17 |
+Web
 
-## Instalação
+```ssh
+cd web
+npm install
+npm run start
+```
 
-Use ```git clone https://github.com/iury0393/ecoleta_nlw.git ``` para clonar o repositório.
+Mobile
 
-## Desenvolvedor
+```ssh
+cd mobile
+npm install
+npm run start
+```
 
-| Nome | Função | Email |
-| ------ | ------ | ----- |
-| Iury Vasconcelos | Desenvolvedor | iury0393@gmail.com |
+## Author
+
+Iury Vasconcelos Leitão - [GitHub](https://github.com/iury0393) / [Linkedin](https://www.linkedin.com/in/iury-vasconcelos-dev/) / [Email](mailto:iury0393@gmail.com)
+---
+
+<p align="center">Develop by <a href="https://github.com/iury0393">Iury Vasconcelos</a></p>

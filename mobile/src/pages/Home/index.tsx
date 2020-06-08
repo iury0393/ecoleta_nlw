@@ -1,79 +1,61 @@
-import React,{ useState } from 'react';
-import { Feather as Icon} from '@expo/vector-icons'
+import React, {useState} from 'react';
 import {View, ImageBackground, Image, Text, StyleSheet, TextInput, KeyboardAvoidingView, Platform} from 'react-native';
-import { RectButton } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
+import { Feather as Icon} from "@expo/vector-icons";
+import { RectButton} from 'react-native-gesture-handler';
+import { useNavigation} from '@react-navigation/native';
 
-const Home = () =>{
 
+const Home = () => {
   const navigation = useNavigation();
-  const [uf, setUf] = useState<string>();
-  const [city, setCity] = useState<string>();
 
+  const [uf, setUf] = useState('');
+  const [city, setCity] = useState('');
 
-  function handleNavigatePoints(){
+  function handleNavigateToPoints() {
     navigation.navigate('Points', {
       uf,
-      city
+      city,
     });
   }
 
-
   return (
-    <KeyboardAvoidingView
-      style={{ flex:1 }}
-      behavior={Platform.OS ==='ios' ? 'padding':undefined}
-    >
-      <ImageBackground 
-          source={require('../../assets/home-background.png')} 
-          style={styles.container}
-          imageStyle={{ width: 274, height: 368 }}
-
-          >
-        <View style={styles.main}>
-          <Image source={require('../../assets/logo.png')} />
-          <Text style={styles.title}>Seu marketplace de coleta de resíduos.</Text>
-          <Text style={styles.description}>Ajudamos pessoas a encontrar pontos de coleta de forma eficiente.</Text>
+    <KeyboardAvoidingView style={{flex: 1}} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+    <ImageBackground 
+    source={require('../../assets/home-background.png')} 
+    style={styles.container}    
+    imageStyle={{ width: 274, height: 368 }} >
+      <View style={styles.main}>
+        <Image source={require('../../assets/logo.png')} />
+        <View>
+          <Text style={styles.title}>Seu MarketPlace de coleta de resíduos</Text>
+          <Text style={styles.description}>Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente</Text>
         </View>
+      </View>
 
-        <View style={styles.footer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Selecione a UF"
-            autoCapitalize="characters"
-            maxLength={2}
-            autoCorrect={false}
-            value={uf}
-            onChangeText={setUf}
-          />
+      <View style={styles.footer}>
+          <TextInput style={styles.input} placeholder="digite a UF" value={uf} onChangeText={setUf} maxLength={2} autoCapitalize="characters" autoCorrect={false} />
+          <TextInput style={styles.input} placeholder="digite a Cidade" value={city} onChangeText={setCity} autoCorrect={false} />
 
-          <TextInput
-            style={styles.input}
-            placeholder="Selecione a Cidade"
-            autoCorrect={false}
-            value={city}
-            onChangeText={setCity}
-          />
-          <RectButton style={styles.button} onPress={handleNavigatePoints}>
+          <RectButton style={styles.button} onPress={handleNavigateToPoints}>
             <View style={styles.buttonIcon}>
               <Text>
-                <Icon name="arrow-right" color="#FFF" size={24}/>
+                <Icon name="arrow-right" color="#FFF" size={24} />
               </Text>
             </View>
             <Text style={styles.buttonText}>
               Entrar
             </Text>
           </RectButton>
-        </View>
-      </ImageBackground>
+      </View>      
+    </ImageBackground>
     </KeyboardAvoidingView>
   )
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 32
+    padding: 32,    
   },
 
   main: {
@@ -86,7 +68,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontFamily: 'Ubuntu_700Bold',
     maxWidth: 260,
-    marginTop: 32
+    marginTop: 64,
   },
 
   description: {
@@ -118,7 +100,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
     alignItems: 'center',
-    marginTop: 16,
+    marginTop: 8,
   },
 
   buttonIcon: {
