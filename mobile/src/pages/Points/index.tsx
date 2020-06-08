@@ -11,7 +11,7 @@ import * as Location from 'expo-location';
 interface Params{
   uf: string,
   city: string,
-}
+};
 
 interface Item{
   id: number,
@@ -60,6 +60,18 @@ const Points = () => {
     }
     loadPosition()
   },[]);
+
+  // useEffect(()=>{
+  //   api.get('/points', {
+  //     params: {
+  //       city: routeParams.city,
+  //       uf: routeParams.uf,
+  //       items: selectedItems
+  //     }
+  //   }).then(response => {
+  //     setPoints(response.data);
+  //   })
+  // },[setSelectedItems]);
 
   function handleSelectItem(id: number){
     const alreadySelected = selectedItems.findIndex(item => item === id);
